@@ -1,0 +1,44 @@
+# ==========================
+# Rust / Cargo
+# ==========================
+# Diretório de build
+/target/
+
+# Cache do cargo (dependências compiladas)
+/.cargo/
+
+# Arquivos de lock (caso você não queira fixar dependências entre máquinas)
+# Se quiser compartilhar exatamente as versões, remova essa linha
+Cargo.lock
+
+# ==========================
+# Logs / Debug
+# ==========================
+*.log
+*.out
+*.err
+
+# ==========================
+# Sistema Operacional
+# ==========================
+.DS_Store        # macOS
+Thumbs.db        # Windows
+ehthumbs.db
+desktop.ini
+
+# ==========================
+# Editores / IDEs
+# ==========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==========================
+# Rustlings específico
+# ==========================
+# Arquivos gerados durante a execução dos exercícios
+rustlings/exercises/**/.solutions
+rustlings/exercises/**/.cache
+
