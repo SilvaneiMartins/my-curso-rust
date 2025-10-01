@@ -96,9 +96,20 @@ Thumbs.db
 /rust-learning/
  ├── hello-rust/
  ├── rustlings/
+ ├── semana-02/
+ │    └── 2SEMANA.md
  ├── README.md
  └── .gitignore
 ```
+
+---
+
+## 📅 Roadmap do Curso
+
+- [x] [Semana 1 – Instalação e Hello World](1SEMANA.md)/)
+- [x] [Semana 2 – Ownership, References e Lifetimes](2SEMANA.md)
+- [ ] Semana 3 – Structs, Enums e Traits
+- [ ] Semana 4 – Projeto – CLI de Notas Seguras (salvar texto criptografado localmente)
 
 ## Contato
 

@@ -1,0 +1,188 @@
+# 📅 Semana 2 – Ownership, References e Lifetimes  
+
+Nesta semana do roadmap **Rust + DevSecOps**, estudei os três conceitos centrais que tornam o Rust único em relação à **segurança de memória**:  
+
+- **Ownership (Propriedade)**  
+- **References (Referências)**  
+- **Lifetimes (Tempos de Vida)**  
+
+---
+
+## 🔑 Conceitos Fundamentais  
+
+### 1. Ownership  
+Cada valor em Rust tem **um único dono** (variável).  
+Quando o dono sai do escopo, a memória é liberada. Isso evita problemas como *double free* e *dangling pointers*.  
+
+```rust
+fn main() {
+    let s1 = String::from("Olá");
+    let s2 = s1; // move a propriedade
+
+    // println!("{}", s1); // ❌ erro: ownership movido
+    println!("{}", s2);   // ✅ ok
+}
+```
+
+---
+
+### 2. References (Referências)  
+Referências permitem **emprestar valores** sem transferir ownership.  
+- Podem ser **imutáveis** (`&`) ou **mutáveis** (`&mut`).  
+- Regras:  
+  - Quantas **imutáveis** quiser.  
+  - Apenas **uma mutável** por vez.  
+
+```rust
+fn main() {
+    let mut s = String::from("Oi");
+
+    let r1 = &s;
+    let r2 = &s;
+    println!("{} e {}", r1, r2); // ✅ várias imutáveis
+
+    let r3 = &mut s;
+    r3.push_str(", Silvanei!");
+    println!("{}", r3); // ✅ apenas uma mutável
+}
+```
+
+---
+
+### 3. Lifetimes  
+Garantem que referências sempre sejam válidas.  
+Na maioria dos casos, o compilador infere automaticamente, mas podemos explicitá-las com `'a`.  
+
+```rust
+fn maior<'a>(s1: &'a str, s2: &'a str) -> &'a str {
+    if s1.len() > s2.len() { s1 } else { s2 }
+}
+
+fn main() {
+    let a = String::from("Rust");
+    let b = String::from("DevSecOps");
+
+    let maior_str = maior(&a, &b);
+    println!("Maior string: {}", maior_str);
+}
+```
+
+---
+
+## 📚 Recursos de Estudo  
+
+- 📘 [The Rust Book – Ownership](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)  
+- 📘 [The Rust Book – References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html)  
+- 📘 [The Rust Book – Lifetimes](https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html)  
+- 🏋️ Rustlings:  
+  - `exercises/04_move_semantics/`  
+  - `exercises/05_structs/`  
+  - `exercises/10_lifetimes/`  
+
+---
+
+## 🏋️ Exercícios Práticos  
+
+### Ownership  
+```rust
+fn tamanho(s: String) -> usize {
+    s.len()
+}
+
+fn main() {
+    let palavra = String::from("Ownership");
+    let len = tamanho(palavra);
+    println!("Tamanho: {}", len);
+
+    // println!("{}", palavra); // ❌ erro: ownership moveu
+}
+```
+
+---
+
+### References  
+```rust
+fn tamanho_ref(s: &String) -> usize {
+    s.len()
+}
+
+fn main() {
+    let palavra = String::from("References");
+    let len = tamanho_ref(&palavra);
+    println!("Tamanho: {}", len);
+    println!("Ainda posso usar: {}", palavra); // ✅ continua válido
+}
+```
+
+---
+
+### Lifetimes  
+```rust
+fn maior<'a>(s1: &'a str, s2: &'a str) -> &'a str {
+    if s1.len() > s2.len() { s1 } else { s2 }
+}
+
+fn main() {
+    let a = String::from("AAA");
+    let b = String::from("BBBBB");
+    println!("Maior: {}", maior(&a, &b));
+}
+```
+
+---
+
+### Mini Projeto – Gerenciador de Notas  
+```rust
+fn add_nota(notas: &mut Vec<String>, nova: String) {
+    notas.push(nova);
+}
+
+fn get_maior<'a>(notas: &'a Vec<String>) -> &'a String {
+    notas.iter().max_by_key(|s| s.len()).unwrap()
+}
+
+fn main() {
+    let mut notas = Vec::new();
+    add_nota(&mut notas, String::from("Rust é top!"));
+    add_nota(&mut notas, String::from("Ownership, References e Lifetimes aprendidos."));
+
+    println!("Nota mais longa: {}", get_maior(&notas));
+}
+```
+
+---
+
+## ✅ Checklist Semana 2  
+
+- [x] Estudei Ownership  
+- [x] Pratiquei References (imutáveis e mutáveis)  
+- [x] Entendi Lifetimes e usei em funções  
+- [x] Completei exercícios no Rustlings  
+- [x] Implementei mini projeto `Gerenciador de Notas`  
+
+---
+
+## Contato
+
+<a href="https://github.com/SilvaneiMartins">
+    <img
+        style="border-radius:50%"
+        src="https://github.com/SilvaneiMartins.png"
+        width="100px;"
+        alt="Silvanei Martins"
+    />
+    <br />
+    <sub>
+        <b>Silvanei de Almeida Martins</b>
+    </sub>
+</a>
+     <a href="https://github.com/SilvaneiMartins" title="Silvanei martins" >
+ </a>
+<br />
+🚀 Feito com ❤️ por Silvanei Martins
+
+---
+
+🔜 **Semana 3**: avançaremos para **Structs, Enums e Traits**, aprofundando a modelagem de dados em Rust.
+
+
