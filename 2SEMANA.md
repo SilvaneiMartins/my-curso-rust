@@ -1,18 +1,19 @@
-# 📅 Semana 2 – Ownership, References e Lifetimes  
+# 📅 Semana 2 – Ownership, References e Lifetimes
 
-Nesta semana do roadmap **Rust + DevSecOps**, estudei os três conceitos centrais que tornam o Rust único em relação à **segurança de memória**:  
+Nesta semana do roadmap **Rust + DevSecOps**, estudei os três conceitos centrais que tornam o Rust único em relação à **segurança de memória**:
 
-- **Ownership (Propriedade)**  
-- **References (Referências)**  
-- **Lifetimes (Tempos de Vida)**  
+- **Ownership (Propriedade)**
+- **References (Referências)**
+- **Lifetimes (Tempos de Vida)**
 
 ---
 
-## 🔑 Conceitos Fundamentais  
+## 🔑 Conceitos Fundamentais
 
-### 1. Ownership  
+### 1. Ownership
+
 Cada valor em Rust tem **um único dono** (variável).  
-Quando o dono sai do escopo, a memória é liberada. Isso evita problemas como *double free* e *dangling pointers*.  
+Quando o dono sai do escopo, a memória é liberada. Isso evita problemas como _double free_ e _dangling pointers_.
 
 ```rust
 fn main() {
@@ -26,12 +27,14 @@ fn main() {
 
 ---
 
-### 2. References (Referências)  
-Referências permitem **emprestar valores** sem transferir ownership.  
-- Podem ser **imutáveis** (`&`) ou **mutáveis** (`&mut`).  
-- Regras:  
-  - Quantas **imutáveis** quiser.  
-  - Apenas **uma mutável** por vez.  
+### 2. References (Referências)
+
+Referências permitem **emprestar valores** sem transferir ownership.
+
+- Podem ser **imutáveis** (`&`) ou **mutáveis** (`&mut`).
+- Regras:
+  - Quantas **imutáveis** quiser.
+  - Apenas **uma mutável** por vez.
 
 ```rust
 fn main() {
@@ -49,9 +52,10 @@ fn main() {
 
 ---
 
-### 3. Lifetimes  
+### 3. Lifetimes
+
 Garantem que referências sempre sejam válidas.  
-Na maioria dos casos, o compilador infere automaticamente, mas podemos explicitá-las com `'a`.  
+Na maioria dos casos, o compilador infere automaticamente, mas podemos explicitá-las com `'a`.
 
 ```rust
 fn maior<'a>(s1: &'a str, s2: &'a str) -> &'a str {
@@ -69,21 +73,22 @@ fn main() {
 
 ---
 
-## 📚 Recursos de Estudo  
+## 📚 Recursos de Estudo
 
-- 📘 [The Rust Book – Ownership](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)  
-- 📘 [The Rust Book – References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html)  
-- 📘 [The Rust Book – Lifetimes](https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html)  
-- 🏋️ Rustlings:  
-  - `exercises/04_move_semantics/`  
-  - `exercises/05_structs/`  
-  - `exercises/10_lifetimes/`  
+- 📘 [The Rust Book – Ownership](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)
+- 📘 [The Rust Book – References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html)
+- 📘 [The Rust Book – Lifetimes](https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html)
+- 🏋️ Rustlings:
+  - `exercises/04_move_semantics/`
+  - `exercises/05_structs/`
+  - `exercises/10_lifetimes/`
 
 ---
 
-## 🏋️ Exercícios Práticos  
+## 🏋️ Exercícios Práticos
 
-### Ownership  
+### Ownership
+
 ```rust
 fn tamanho(s: String) -> usize {
     s.len()
@@ -100,7 +105,8 @@ fn main() {
 
 ---
 
-### References  
+### References
+
 ```rust
 fn tamanho_ref(s: &String) -> usize {
     s.len()
@@ -116,7 +122,8 @@ fn main() {
 
 ---
 
-### Lifetimes  
+### Lifetimes
+
 ```rust
 fn maior<'a>(s1: &'a str, s2: &'a str) -> &'a str {
     if s1.len() > s2.len() { s1 } else { s2 }
@@ -131,7 +138,8 @@ fn main() {
 
 ---
 
-### Mini Projeto – Gerenciador de Notas  
+### Mini Projeto – Gerenciador de Notas
+
 ```rust
 fn add_nota(notas: &mut Vec<String>, nova: String) {
     notas.push(nova);
@@ -152,13 +160,13 @@ fn main() {
 
 ---
 
-## ✅ Checklist Semana 2  
+## ✅ Checklist Semana 2
 
-- [x] Estudei Ownership  
-- [x] Pratiquei References (imutáveis e mutáveis)  
-- [x] Entendi Lifetimes e usei em funções  
-- [x] Completei exercícios no Rustlings  
-- [x] Implementei mini projeto `Gerenciador de Notas`  
+- [x] Estudei Ownership
+- [x] Pratiquei References (imutáveis e mutáveis)
+- [x] Entendi Lifetimes e usei em funções
+- [x] Completei exercícios no Rustlings
+- [x] Implementei mini projeto `Gerenciador de Notas`
 
 ---
 
@@ -184,5 +192,3 @@ fn main() {
 ---
 
 🔜 **Semana 3**: avançaremos para **Structs, Enums e Traits**, aprofundando a modelagem de dados em Rust.
-
-
